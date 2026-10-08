@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="隐私优先、无需登录的智能简历编辑器" />
+  <title>简历工坊 · 智能简历编辑器</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2a41'/%3E%3Cpath d='M19 14h20l8 8v28H19z' fill='%23fff'/%3E%3Cpath d='M39 14v9h8M25 31h16M25 38h16M25 45h10' fill='none' stroke='%23e45b3f' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <style>
+    :root{--ink:#172033;--muted:#687287;--paper:#fff;--canvas:#e8edf3;--line:#d8dee8;--accent:#df5b3e;--accent-soft:#fff0eb;--navy:#1b2a41;--shadow:0 20px 55px rgba(22,35,56,.16);--radius:14px;font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--canvas)}
+    *{box-sizing:border-box}body{margin:0;min-width:320px}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh;display:grid;grid-template-rows:64px 1fr}.topbar{display:flex;align-items:center;gap:18px;padding:0 22px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:10px;font-weight:800;white-space:nowrap}.brand-mark{width:32px;height:32px;border-radius:9px;background:var(--navy);display:grid;place-items:center;color:#fff}.brand-mark:after{content:"简";font-size:15px}.doc-title{border:0;background:transparent;padding:8px 10px;border-radius:8px;min-width:110px;max-width:280px;color:var(--ink)}.doc-title:hover,.doc-title:focus{background:#f2f5f8;outline:none}.save-state{font-size:13px;color:var(--muted);margin-right:auto;white-space:nowrap}.actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:9px 13px;font-weight:650;display:inline-flex;align-items:center;gap:7px}.btn:hover{border-color:#aab5c5;background:#f8fafc}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.primary:hover{background:#c94d33}.workspace{display:grid;grid-template-columns:330px minmax(600px,1fr);min-height:0}.sidebar{background:#fff;border-right:1px solid var(--line);padding:22px;overflow:auto}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}.sidebar h1{font-size:23px;line-height:1.22;margin:0 0 8px}.sidebar>p{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 22px}.panel{border-top:1px solid var(--line);padding:18px 0}.panel h2{font-size:14px;margin:0 0 14px}.field{display:grid;gap:7px;margin:0 0 13px}.field label{font-size:13px;font-weight:650;color:#3d4759}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.field textarea{min-height:94px;resize:vertical}.range-row{display:grid;grid-template-columns:1fr 42px;align-items:center;gap:8px}.range-row output{font-size:12px;color:var(--muted);text-align:right}.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.small{font-size:13px;padding:9px}.privacy{display:flex;gap:9px;border-radius:11px;background:#eef6f3;color:#2b6655;padding:12px;font-size:12px;line-height:1.45}.stage{overflow:auto;padding:36px;display:flex;justify-content:center;align-items:flex-start}.resume{width:210mm;min-height:297mm;background:var(--paper);box-shadow:var(--shadow);padding:18mm 18mm 20mm;position:relative;--resume-font:16px;--resume-leading:1.55;--section-gap:22px;font-family:Georgia,"Noto Serif SC","Songti SC",serif;font-size:var(--resume-font);line-height:var(--resume-leading)}.resume:before{content:"";position:absolute;left:0;right:0;top:0;height:7px;background:linear-gradient(90deg,var(--accent) 0 28%,var(--navy) 28%)}[contenteditable="true"]{outline:none;border-radius:3px;transition:.15s}[contenteditable="true"]:hover{background:#fff8f5;box-shadow:0 0 0 4px #fff8f5}[contenteditable="true"]:focus{background:#fff4ef;box-shadow:0 0 0 4px #fff4ef}.resume-header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;border-bottom:1px solid #cfd5de;padding-bottom:18px}.name{font-size:34px;line-height:1.15;margin:0 0 7px;letter-spacing:.02em}.role{font-size:17px;color:var(--accent);font-weight:700}.contact{display:grid;gap:5px;text-align:right;font-family:Inter,"PingFang SC",sans-serif;font-size:12px;color:#4e586a}.section{margin-top:var(--section-gap)}.section-title{display:flex;align-items:center;gap:11px;margin:0 0 11px;color:var(--navy);font-family:Inter,"PingFang SC",sans-serif;font-size:15px;letter-spacing:.12em;font-weight:800}.section-title:after{content:"";height:1px;background:#ccd3dd;flex:1}.summary{margin:0;color:#394255}.entry{display:grid;grid-template-columns:1fr auto;column-gap:18px;margin-top:14px}.entry h3{font-size:16px;margin:0 0 3px}.entry .meta{font-size:13px;color:#5f6878}.entry .date{font-family:Inter,"PingFang SC",sans-serif;font-size:12px;color:#5f6878;text-align:right}.entry ul{grid-column:1/-1;margin:7px 0 0;padding-left:19px}.entry li{margin:3px 0}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:5px 9px;background:#f0f3f7;border-radius:6px;font-family:Inter,"PingFang SC",sans-serif;font-size:12px;color:#354052}.hint{position:fixed;right:22px;bottom:20px;background:var(--navy);color:#fff;border-radius:10px;padding:10px 13px;font-size:12px;box-shadow:0 12px 30px rgba(0,0,0,.2);opacity:0;transform:translateY(8px);pointer-events:none;transition:.2s}.hint.show{opacity:1;transform:none}.mobile-controls{display:none}
+    @media(max-width:950px){.workspace{grid-template-columns:1fr}.sidebar{display:none;position:fixed;z-index:20;inset:64px 0 0 0;border:0}.sidebar.open{display:block}.mobile-controls{display:inline-flex}.stage{padding:18px;justify-content:flex-start}.resume{transform-origin:top left}.topbar{padding:0 12px;gap:8px}.brand span:last-child,.save-state{display:none}.actions .btn:not(.primary):not(.mobile-controls){display:none}.doc-title{max-width:160px}}
+    @media(max-width:720px){.resume{width:210mm;transform:scale(.78);margin-bottom:-64mm}.stage{padding:12px}}
+    @media(max-width:560px){.resume{transform:scale(.54);margin-bottom:-137mm}.doc-title{max-width:110px}.btn{padding:8px 10px}}
+    @media print{body{background:#fff}.topbar,.sidebar,.hint{display:none!important}.app,.workspace{display:block}.stage{display:block;padding:0;overflow:visible}.resume{box-shadow:none;width:210mm;min-height:297mm;margin:0;padding:16mm 18mm;transform:none!important}@page{size:A4;margin:0}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark"></span><span>简历工坊</span></div>
+      <input id="docTitle" class="doc-title" value="我的中文简历" aria-label="文档名称" />
+      <span id="saveState" class="save-state">已自动保存在此设备</span>
+      <div class="actions">
+        <button class="btn mobile-controls" id="togglePanel">设置</button>
+        <button class="btn" id="backupBtn">备份</button>
+        <button class="btn" id="restoreBtn">恢复</button>
+        <button class="btn primary" id="pdfBtn">导出 PDF</button>
+      </div>
+    </header>
+    <main class="workspace">
+      <aside class="sidebar" id="sidebar">
+        <div class="eyebrow">Resume Studio</div>
+        <h1>把经历写得清楚，也写得像你。</h1>
+        <p>点击右侧简历中的任意文字即可编辑。内容只保存在当前浏览器。</p>
+        <section class="panel">
+          <h2>排版设置</h2>
+          <div class="field"><label for="fontFamily">正文字体</label><select id="fontFamily"><option value='Georgia,"Noto Serif SC","Songti SC",serif'>经典宋体</option><option value='Inter,"PingFang SC","Microsoft YaHei",sans-serif'>现代黑体</option><option value='"Kaiti SC","STKaiti",serif'>人文楷体</option></select></div>
+          <div class="field"><label for="fontSize">字号</label><div class="range-row"><input id="fontSize" type="range" min="13" max="18" value="16" /><output id="fontSizeOut">16px</output></div></div>
+          <div class="field"><label for="lineHeight">行距</label><div class="range-row"><input id="lineHeight" type="range" min="1.25" max="1.85" step=".05" value="1.55" /><output id="lineHeightOut">1.55</output></div></div>
+          <div class="field"><label for="sectionGap">段落间距</label><div class="range-row"><input id="sectionGap" type="range" min="14" max="32" value="22" /><output id="sectionGapOut">22px</output></div></div>
+        </section>
+        <section class="panel">
+          <h2>文档操作</h2>
+          <div class="quick-grid"><button class="btn small" id="duplicateBtn">创建副本</button><button class="btn small" id="resetBtn">恢复模板</button></div>
+          <input id="restoreInput" type="file" accept="application/json" hidden />
+        </section>
+        <div class="privacy"><span>◆</span><span><strong>隐私优先</strong><br>不上传简历内容；清除浏览器数据会删除本地副本，请定期备份。</span></div>
+      </aside>
+      <section class="stage" aria-label="简历预览与编辑区">
+        <article class="resume" id="resume">
+          <header class="resume-header">
+            <div><h1 class="name" contenteditable="true">林知夏</h1><div class="role" contenteditable="true">产品设计师 · 前端开发者</div></div>
+            <div class="contact"><span contenteditable="true">zhixia@example.com</span><span contenteditable="true">+86 138 0000 0000</span><span contenteditable="true">上海 · 可远程</span><span contenteditable="true">portfolio.example.com</span></div>
+          </header>
+          <section class="section"><h2 class="section-title">个人简介</h2><p class="summary" contenteditable="true">兼具产品思维与前端实现能力，擅长把复杂流程梳理成清晰、可靠的用户体验。关注设计系统、信息架构与可访问性，并能独立推动产品从需求到上线。</p></section>
+          <section class="section"><h2 class="section-title">工作经历</h2><div class="entry"><div><h3 contenteditable="true">高级产品设计师 · 光屿科技</h3><div class="meta" contenteditable="true">企业效率产品 / 设计系统</div></div><div class="date" contenteditable="true">2023.06 — 至今<br>上海</div><ul contenteditable="true"><li>主导核心工作台改版，整合 6 条分散流程，让新用户可以在一个界面完成配置与发布。</li><li>建立跨产品设计规范并与前端组件库同步，提升团队交付一致性与复用效率。</li><li>通过访谈、埋点和可用性测试持续验证方案，将关键任务完成率提升 24%。</li></ul></div><div class="entry"><div><h3 contenteditable="true">产品设计师 · 星河工作室</h3><div class="meta" contenteditable="true">消费端 Web / 移动端</div></div><div class="date" contenteditable="true">2021.07 — 2023.05<br>杭州</div><ul contenteditable="true"><li>负责从概念验证到上线的端到端设计，与产品、研发共同拆解范围并跟进质量。</li><li>搭建可复用的研究与评审机制，缩短方案决策周期。</li></ul></div></section>
+          <section class="section"><h2 class="section-title">项目经历</h2><div class="entry"><div><h3 contenteditable="true">在线简历编辑器 ResumeEditor</h3><div class="meta" contenteditable="true">独立设计与开发</div></div><div class="date" contenteditable="true">2026.02 — 2026.05</div><ul contenteditable="true"><li>设计轻量化浏览器端简历编辑体验，支持内容直编、排版调整与 PDF 导出。</li><li>采用 LocalStorage 持久化用户数据，减少个人信息上传云端的隐私风险。</li><li>按 MVP 思路优先验证核心流程，并规划模板、云同步与服务端生成能力。</li></ul></div></section>
+          <section class="section"><h2 class="section-title">教育经历</h2><div class="entry"><div><h3 contenteditable="true">悉尼大学 · 信息技术硕士</h3><div class="meta" contenteditable="true">人机交互与软件工程</div></div><div class="date" contenteditable="true">2024 — 2026</div></div></section>
+          <section class="section"><h2 class="section-title">技能</h2><div class="chips" contenteditable="true"><span class="chip">Product Design</span><span class="chip">Figma</span><span class="chip">HTML / CSS</span><span class="chip">JavaScript</span><span class="chip">Design Systems</span><span class="chip">User Research</span></div></section>
+        </article>
+      </section>
+    </main>
+    <div class="hint" id="hint" role="status"></div>
+  </div>
+  <script>
+    const KEY='resume-editor-v1';
+    const $=s=>document.querySelector(s);
+    const resume=$('#resume'), hint=$('#hint'), saveState=$('#saveState');
+    const controls=['fontFamily','fontSize','lineHeight','sectionGap'];
+    const template={html:resume.innerHTML,title:$('#docTitle').value,settings:{fontFamily:$('#fontFamily').value,fontSize:'16',lineHeight:'1.55',sectionGap:'22'}};
+    let timer;
+    function toast(text){hint.textContent=text;hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),1800)}
+    function state(){return {html:resume.innerHTML,title:$('#docTitle').value,settings:Object.fromEntries(controls.map(id=>[id,$('#'+id).value]))}}
+    function apply(data){if(!data)return;resume.innerHTML=data.html||template.html;$('#docTitle').value=data.title||template.title;controls.forEach(id=>{$('#'+id).value=data.settings?.[id]??template.settings[id]});style();}
+    function style(){resume.style.fontFamily=$('#fontFamily').value;resume.style.setProperty('--resume-font',$('#fontSize').value+'px');resume.style.setProperty('--resume-leading',$('#lineHeight').value);resume.style.setProperty('--section-gap',$('#sectionGap').value+'px');$('#fontSizeOut').value=$('#fontSize').value+'px';$('#lineHeightOut').value=$('#lineHeight').value;$('#sectionGapOut').value=$('#sectionGap').value+'px'}
+    function save(){saveState.textContent='正在保存…';clearTimeout(timer);timer=setTimeout(()=>{localStorage.setItem(KEY,JSON.stringify(state()));saveState.textContent='已自动保存在此设备'},350)}
+    const saved=localStorage.getItem(KEY);if(saved){try{apply(JSON.parse(saved))}catch(e){apply(template)}}else apply(template);
+    resume.addEventListener('input',save);$('#docTitle').addEventListener('input',save);
+    controls.forEach(id=>$('#'+id).addEventListener('input',()=>{style();save()}));
+    $('#pdfBtn').onclick=()=>{toast('请在打印窗口选择“另存为 PDF”');setTimeout(()=>window.print(),250)};
+    $('#backupBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=($('#docTitle').value||'简历')+'-备份.json';a.click();URL.revokeObjectURL(a.href);toast('备份已下载')};
+    $('#restoreBtn').onclick=()=>$('#restoreInput').click();
+    $('#restoreInput').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{apply(JSON.parse(await f.text()));save();toast('备份已恢复')}catch(err){toast('无法读取这个备份文件')}e.target.value=''};
+    $('#duplicateBtn').onclick=()=>{$('#docTitle').value+=' 副本';save();toast('已创建本地副本名称')};
+    $('#resetBtn').onclick=()=>{if(confirm('确定恢复初始模板？当前内容会被覆盖。')){apply(template);save();toast('已恢复模板')}};
+    $('#togglePanel').onclick=()=>$('#sidebar').classList.toggle('open');
+    window.addEventListener('beforeprint',()=>document.activeElement?.blur());
+  </script>
+</body>
+</html>
